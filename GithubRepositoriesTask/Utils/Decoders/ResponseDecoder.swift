@@ -10,6 +10,6 @@ import Foundation
 
 protocol ResponseDecoder {
 
-    func decode<T: Encoder>(of type: T.Type, data: Data) -> T?
+    func decode<T: Decodable>(of type: T.Type, data: Data) -> T?
 
 }
