@@ -22,6 +22,7 @@ class GithubRepositoriesViewController: UIViewController {
     private func setupTableView() {
         self.githubRepositoriesTableView.dataSource = self
         self.githubRepositoriesTableView.delegate = self
+        self.githubRepositoriesTableView.tableFooterView = UIView() // this to hide tableview seperators if it is empty.
         self.githubRepositoriesTableView.register(GithubRepositoryTableViewCell.nib, forCellReuseIdentifier: GithubRepositoryTableViewCell.identifier)
     }
 
