@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GithubRepositoriesViewController" customModule="GithubRepositoriesTask" customModuleProvider="target">
             <connections>
+                <outlet property="githubRepositoriesTableView" destination="ElD-9A-Aj9" id="dbT-CB-bf9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,20 +18,20 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Here in the repositories view controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdc-dX-Oli">
-                    <rect key="frame" x="186" y="438" width="295" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ElD-9A-Aj9">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="Jdc-dX-Oli" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="MfU-tY-vP6"/>
-                <constraint firstItem="Jdc-dX-Oli" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="fk2-h3-bfF"/>
+                <constraint firstItem="ElD-9A-Aj9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="94o-SY-Yvt"/>
+                <constraint firstItem="ElD-9A-Aj9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FQr-fs-bV2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ElD-9A-Aj9" secondAttribute="bottom" id="dC2-hh-lJU"/>
+                <constraint firstItem="ElD-9A-Aj9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="zzd-AB-G1g"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="153"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </view>
     </objects>
 </document>
