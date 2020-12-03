@@ -14,6 +14,10 @@
 		F99F9D6F2578F23F00E695B8 /* GithubRepositoriesTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D6E2578F23F00E695B8 /* GithubRepositoriesTaskTests.swift */; };
 		F99F9D7B2578F32C00E695B8 /* GithubRepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D792578F32C00E695B8 /* GithubRepositoriesViewController.swift */; };
 		F99F9D7C2578F32C00E695B8 /* GithubRepositoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99F9D7A2578F32C00E695B8 /* GithubRepositoriesViewController.xib */; };
+		F9EB64AE2578F75000CEAE81 /* GithubRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB64AC2578F75000CEAE81 /* GithubRepositoryTableViewCell.swift */; };
+		F9EB64AF2578F75000CEAE81 /* GithubRepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9EB64AD2578F75000CEAE81 /* GithubRepositoryTableViewCell.xib */; };
+		F9EB64B32578FA2400CEAE81 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB64B22578FA2400CEAE81 /* UIExtensions.swift */; };
+		F9EB64B52579047300CEAE81 /* CircleAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB64B42579047300CEAE81 /* CircleAvatarImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,10 @@
 		F99F9D702578F23F00E695B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F99F9D792578F32C00E695B8 /* GithubRepositoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoriesViewController.swift; sourceTree = "<group>"; };
 		F99F9D7A2578F32C00E695B8 /* GithubRepositoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GithubRepositoriesViewController.xib; sourceTree = "<group>"; };
+		F9EB64AC2578F75000CEAE81 /* GithubRepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoryTableViewCell.swift; sourceTree = "<group>"; };
+		F9EB64AD2578F75000CEAE81 /* GithubRepositoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GithubRepositoryTableViewCell.xib; sourceTree = "<group>"; };
+		F9EB64B22578FA2400CEAE81 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		F9EB64B42579047300CEAE81 /* CircleAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleAvatarImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,7 @@
 		F99F9D562578F23C00E695B8 /* GithubRepositoriesTask */ = {
 			isa = PBXGroup;
 			children = (
+				F9EB64B02578FA0E00CEAE81 /* Utile */,
 				F99F9D7D2578F3D200E695B8 /* GithubRepositoriesViewController */,
 				F99F9D572578F23C00E695B8 /* AppDelegate.swift */,
 				F99F9D592578F23C00E695B8 /* SceneDelegate.swift */,
@@ -101,10 +110,37 @@
 		F99F9D7D2578F3D200E695B8 /* GithubRepositoriesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F9EB64AB2578F72500CEAE81 /* GithubRepositoryTableViewCell */,
 				F99F9D792578F32C00E695B8 /* GithubRepositoriesViewController.swift */,
 				F99F9D7A2578F32C00E695B8 /* GithubRepositoriesViewController.xib */,
 			);
 			path = GithubRepositoriesViewController;
+			sourceTree = "<group>";
+		};
+		F9EB64AB2578F72500CEAE81 /* GithubRepositoryTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				F9EB64AC2578F75000CEAE81 /* GithubRepositoryTableViewCell.swift */,
+				F9EB64AD2578F75000CEAE81 /* GithubRepositoryTableViewCell.xib */,
+			);
+			path = GithubRepositoryTableViewCell;
+			sourceTree = "<group>";
+		};
+		F9EB64B02578FA0E00CEAE81 /* Utile */ = {
+			isa = PBXGroup;
+			children = (
+				F9EB64B12578FA1500CEAE81 /* UIViewUtils */,
+			);
+			path = Utile;
+			sourceTree = "<group>";
+		};
+		F9EB64B12578FA1500CEAE81 /* UIViewUtils */ = {
+			isa = PBXGroup;
+			children = (
+				F9EB64B22578FA2400CEAE81 /* UIExtensions.swift */,
+				F9EB64B42579047300CEAE81 /* CircleAvatarImageView.swift */,
+			);
+			path = UIViewUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9EB64AF2578F75000CEAE81 /* GithubRepositoryTableViewCell.xib in Resources */,
 				F99F9D7C2578F32C00E695B8 /* GithubRepositoriesViewController.xib in Resources */,
 				F99F9D642578F23F00E695B8 /* LaunchScreen.storyboard in Resources */,
 				F99F9D612578F23F00E695B8 /* Assets.xcassets in Resources */,
@@ -208,8 +245,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9EB64AE2578F75000CEAE81 /* GithubRepositoryTableViewCell.swift in Sources */,
+				F9EB64B52579047300CEAE81 /* CircleAvatarImageView.swift in Sources */,
 				F99F9D582578F23C00E695B8 /* AppDelegate.swift in Sources */,
 				F99F9D5A2578F23C00E695B8 /* SceneDelegate.swift in Sources */,
+				F9EB64B32578FA2400CEAE81 /* UIExtensions.swift in Sources */,
 				F99F9D7B2578F32C00E695B8 /* GithubRepositoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
