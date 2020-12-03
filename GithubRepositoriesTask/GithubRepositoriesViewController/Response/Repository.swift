@@ -28,7 +28,7 @@ struct Repository: Codable {
 		id = try values.decodeIfPresent(Int.self, forKey: .id)
 		name = try values.decodeIfPresent(String.self, forKey: .name)
 		full_name = try values.decodeIfPresent(String.self, forKey: .full_name)
-		privateRepo = try values.decodeIfPresent(Bool.self, forKey: .private)
+		privateRepo = try values.decodeIfPresent(Bool.self, forKey: .privateRepo)
 		owner = try values.decodeIfPresent(Owner.self, forKey: .owner)
 		description = try values.decodeIfPresent(String.self, forKey: .description)
 		url = try values.decodeIfPresent(String.self, forKey: .url)

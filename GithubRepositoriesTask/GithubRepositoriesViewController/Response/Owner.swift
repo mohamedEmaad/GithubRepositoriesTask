@@ -2,6 +2,7 @@
 import Foundation
 
 struct Owner: Codable {
+    
 	let login: String?
 	let id: Int?
 	let avatar_url: String?
@@ -14,6 +15,7 @@ struct Owner: Codable {
 		case id = "id"
 		case avatar_url = "avatar_url"
 		case url = "html_url"
+        case type = "type"
 
 	}
 
@@ -23,6 +25,7 @@ struct Owner: Codable {
 		id = try values.decodeIfPresent(Int.self, forKey: .id)
 		avatar_url = try values.decodeIfPresent(String.self, forKey: .avatar_url)
 		url = try values.decodeIfPresent(String.self, forKey: .url)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
 	}
 
 }

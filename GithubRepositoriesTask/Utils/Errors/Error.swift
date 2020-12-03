@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+enum MainError: Error {
+
+    case invalidUrl
+    case offline
+    case responseError(message: String)
+    
+}
