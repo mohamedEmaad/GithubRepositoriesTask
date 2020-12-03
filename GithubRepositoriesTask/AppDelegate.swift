@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
-        let initialViewController: UIViewController = GithubRepositoriesViewController()
+        let githubRepositoriesViewController: GithubRepositoriesViewController = GithubRepositoriesViewController()
+        let initialViewController: UINavigationController = UINavigationController(rootViewController: githubRepositoriesViewController)
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
         return true

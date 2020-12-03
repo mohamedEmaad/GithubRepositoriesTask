@@ -24,7 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func setInitialView(_ windowScene: UIWindowScene) {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let initialViewController: UIViewController = GithubRepositoriesViewController()
+        let githubRepositoriesViewController: GithubRepositoriesViewController = GithubRepositoriesViewController()
+        let initialViewController: UINavigationController = UINavigationController(rootViewController: githubRepositoriesViewController)
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
     }
