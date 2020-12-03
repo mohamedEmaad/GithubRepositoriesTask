@@ -8,10 +8,16 @@
 
 import Foundation
 
-class GithubRepositoryServiceImp: GithubRepositoryService {
+final class GithubRepositoryServiceImp: GithubRepositoryService {
 
-    func find(criteria: [String : Any?], completion: @escaping ([Repository]?, Error) -> Void) {
-        
+    private let githubRepositoryRepo: GithubRepositoryRepo
+
+    init(githubRepositoryRepo: GithubRepositoryRepo) {
+        self.githubRepositoryRepo = githubRepositoryRepo
+    }
+
+    func find(criteria: [String : Encodable?], completion: @escaping ([Repository]?, Error) -> Void) {
+        //TODO : handle reqeuest here
     }
 
 }
