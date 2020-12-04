@@ -17,7 +17,7 @@ class GithubFetcherTestCases: XCTestCase {
     }
 
     func testSuccessResponse() {
-        MockedRequestHandler.mockedData.data = mockedDataFactory()
+        MockedRequestHandler.mockedData.data = mockedData
         MockedRequestHandler.mockedData.error = nil
         let expectation = XCTestExpectation(description: "success")
         self.sut?.execute(url: .testURL, requestType: .get, body: nil, completion: { (data, _, error) in
@@ -40,14 +40,6 @@ class GithubFetcherTestCases: XCTestCase {
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 1.0)
-    }
-
-    private func mockedDataFactory() -> Data? {
-        let testBundle = Bundle(for: type(of: self))
-        let filepath = testBundle.path(forResource: "LocalRepositories", ofType: "txt")!
-        let url = URL(fileURLWithPath: filepath)
-        let mockedData = try? Data(contentsOf: url)
-        return mockedData
     }
 
 }
