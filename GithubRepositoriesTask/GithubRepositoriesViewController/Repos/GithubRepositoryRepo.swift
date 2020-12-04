@@ -10,6 +10,6 @@ import Foundation
 
 protocol GithubRepositoryRepo {
 
-    func find(body: Data?, completion: @escaping ([Repository]?, Error?) -> Void)
+    func find(url: URL, with criteria: [String: Any?]?, completion: @escaping ([Repository]?, Error?) -> Void)
 
 }
