@@ -29,6 +29,7 @@ final class GithubRepositoryRepoImp: GithubRepositoryRepo {
             } else if let data = data {
                 let allRepositories: [Repository]? = self.responseDecoder.decode(of: [Repository].self, data: data)
                 _repositories = self.requestFilterer.filter(list: allRepositories, with: criteria)
+                _repositories?.forEach({ $0.date = Date.randomDate(daysBack: 2000)?.toString() })
             } else {
                 _error =  MainError.responseError(message: "Something went wrong please try again later")
             }

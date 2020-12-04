@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Repository: Codable {
+final class Repository: Codable {
 
 	let id: Int?
 	let name: String?
@@ -10,6 +10,7 @@ struct Repository: Codable {
 	let owner: Owner?
 	let description: String?
 	let url: String?
+    var date: String?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -20,6 +21,7 @@ struct Repository: Codable {
 		case owner = "owner"
 		case description = "description"
 		case url = "url"
+        case date = "date"
 
     }
 
@@ -32,6 +34,7 @@ struct Repository: Codable {
 		owner = try values.decodeIfPresent(Owner.self, forKey: .owner)
 		description = try values.decodeIfPresent(String.self, forKey: .description)
 		url = try values.decodeIfPresent(String.self, forKey: .url)
+        date = try values.decodeIfPresent(String.self, forKey: .date)
     }
 
 }

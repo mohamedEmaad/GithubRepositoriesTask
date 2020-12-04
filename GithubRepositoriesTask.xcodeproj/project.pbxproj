@@ -12,6 +12,9 @@
 		F95A9CA8257A56EC00578EAF /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CA7257A56EC00578EAF /* ImageLoader.swift */; };
 		F95A9CAA257A577500578EAF /* GithubUserImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CA9257A577500578EAF /* GithubUserImageLoader.swift */; };
 		F95A9CAC257A725800578EAF /* CachedImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CAB257A725800578EAF /* CachedImageLoader.swift */; };
+		F95A9CAF257A9ED600578EAF /* GithubRepoDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CAE257A9ED600578EAF /* GithubRepoDateFormatter.swift */; };
+		F95A9CB1257A9F8300578EAF /* LessThanSixMonthDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CB0257A9F8300578EAF /* LessThanSixMonthDateFormatter.swift */; };
+		F95A9CB3257A9FBC00578EAF /* MoreThanSixMonthDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CB2257A9FBC00578EAF /* MoreThanSixMonthDateFormatter.swift */; };
 		F99F9D582578F23C00E695B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D572578F23C00E695B8 /* AppDelegate.swift */; };
 		F99F9D5A2578F23C00E695B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D592578F23C00E695B8 /* SceneDelegate.swift */; };
 		F99F9D612578F23F00E695B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99F9D602578F23F00E695B8 /* Assets.xcassets */; };
@@ -54,6 +57,9 @@
 		F95A9CA7257A56EC00578EAF /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		F95A9CA9257A577500578EAF /* GithubUserImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubUserImageLoader.swift; sourceTree = "<group>"; };
 		F95A9CAB257A725800578EAF /* CachedImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageLoader.swift; sourceTree = "<group>"; };
+		F95A9CAE257A9ED600578EAF /* GithubRepoDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepoDateFormatter.swift; sourceTree = "<group>"; };
+		F95A9CB0257A9F8300578EAF /* LessThanSixMonthDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessThanSixMonthDateFormatter.swift; sourceTree = "<group>"; };
+		F95A9CB2257A9FBC00578EAF /* MoreThanSixMonthDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreThanSixMonthDateFormatter.swift; sourceTree = "<group>"; };
 		F99F9D542578F23C00E695B8 /* GithubRepositoriesTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubRepositoriesTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F99F9D572578F23C00E695B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F99F9D592578F23C00E695B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +127,16 @@
 			path = ImageLoader;
 			sourceTree = "<group>";
 		};
+		F95A9CAD257A9EC500578EAF /* DateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				F95A9CAE257A9ED600578EAF /* GithubRepoDateFormatter.swift */,
+				F95A9CB0257A9F8300578EAF /* LessThanSixMonthDateFormatter.swift */,
+				F95A9CB2257A9FBC00578EAF /* MoreThanSixMonthDateFormatter.swift */,
+			);
+			path = DateFormatter;
+			sourceTree = "<group>";
+		};
 		F99F9D4B2578F23C00E695B8 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +181,7 @@
 		F99F9D7D2578F3D200E695B8 /* GithubRepositoriesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F95A9CAD257A9EC500578EAF /* DateFormatter */,
 				F95A9CA6257A56DB00578EAF /* ImageLoader */,
 				F95A9CA1257A1A5D00578EAF /* RequestFilterer */,
 				F9EB64BA2579185E00CEAE81 /* Response */,
@@ -380,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9EB64D025792EF100CEAE81 /* Error.swift in Sources */,
+				F95A9CB3257A9FBC00578EAF /* MoreThanSixMonthDateFormatter.swift in Sources */,
 				F9EB64AE2578F75000CEAE81 /* GithubRepositoryTableViewCell.swift in Sources */,
 				F9EB64CC2579253E00CEAE81 /* GithubFetcher.swift in Sources */,
 				F9EB64D62579309600CEAE81 /* GithubRepositoriesDecoder.swift in Sources */,
@@ -393,6 +411,7 @@
 				F9EB64C8257923AF00CEAE81 /* RequestHandler.swift in Sources */,
 				F95A9CAC257A725800578EAF /* CachedImageLoader.swift in Sources */,
 				F95A9CAA257A577500578EAF /* GithubUserImageLoader.swift in Sources */,
+				F95A9CAF257A9ED600578EAF /* GithubRepoDateFormatter.swift in Sources */,
 				F9EB64B32578FA2400CEAE81 /* UIExtensions.swift in Sources */,
 				F9EB64CA2579245700CEAE81 /* RequestType.swift in Sources */,
 				F9EB64D325792FF500CEAE81 /* ResponseDecoder.swift in Sources */,
@@ -402,6 +421,7 @@
 				F99F9D7B2578F32C00E695B8 /* GithubRepositoriesViewController.swift in Sources */,
 				F9EB64BE2579186A00CEAE81 /* Repository.swift in Sources */,
 				F95A9CA3257A1A7400578EAF /* RequestFilterer.swift in Sources */,
+				F95A9CB1257A9F8300578EAF /* LessThanSixMonthDateFormatter.swift in Sources */,
 				F9EB64C52579238300CEAE81 /* GithubRepositoryRepoImp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
