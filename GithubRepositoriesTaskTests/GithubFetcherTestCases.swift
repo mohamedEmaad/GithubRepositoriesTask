@@ -31,7 +31,7 @@ class GithubFetcherTestCases: XCTestCase {
     func testCustomMessageError() {
         let errorMessage: String = "this is the test message"
         MockedRequestHandler.mockedData.data = nil
-        MockedRequestHandler.mockedData.error = MainError.responseError(message: "this is the test message")
+        MockedRequestHandler.mockedData.error = MainError.responseError(message: errorMessage)
         let expectation = XCTestExpectation(description: "error")
         self.sut?.execute(url: .testURL, requestType: .get, body: nil, completion: { (data, _, error) in
             XCTAssertNil(data)
