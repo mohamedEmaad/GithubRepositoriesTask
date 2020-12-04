@@ -20,7 +20,7 @@ class GithubFetcherTestCases: XCTestCase {
         MockedRequestHandler.mockedData.data = mockedDataFactory()
         MockedRequestHandler.mockedData.error = nil
         let expectation = XCTestExpectation(description: "success")
-        self.sut?.execute(url: URL(string: .baseUrl)!, requestType: .get, body: nil, completion: { (data, _, error) in
+        self.sut?.execute(url: .testURL, requestType: .get, body: nil, completion: { (data, _, error) in
             XCTAssertNotNil(data)
             XCTAssertNil(error)
             expectation.fulfill()
@@ -33,7 +33,7 @@ class GithubFetcherTestCases: XCTestCase {
         MockedRequestHandler.mockedData.data = nil
         MockedRequestHandler.mockedData.error = MainError.responseError(message: "this is the test message")
         let expectation = XCTestExpectation(description: "error")
-        self.sut?.execute(url: URL(string: .baseUrl)!, requestType: .get, body: nil, completion: { (data, _, error) in
+        self.sut?.execute(url: .testURL, requestType: .get, body: nil, completion: { (data, _, error) in
             XCTAssertNil(data)
             XCTAssertNotNil(error)
             XCTAssertEqual(error?.getErrorMessage(), errorMessage)
@@ -42,7 +42,7 @@ class GithubFetcherTestCases: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func mockedDataFactory() -> Data? {
+    private func mockedDataFactory() -> Data? {
         let testBundle = Bundle(for: type(of: self))
         let filepath = testBundle.path(forResource: "LocalRepositories", ofType: "txt")!
         let url = URL(fileURLWithPath: filepath)
