@@ -82,7 +82,9 @@ extension GithubRepositoriesViewController: UITableViewDataSource, UITableViewDe
         guard let githubRepositoryTableViewCell: GithubRepositoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: GithubRepositoryTableViewCell.identifier, for: indexPath) as? GithubRepositoryTableViewCell else {
             return UITableViewCell()
         }
-        githubRepositoryTableViewCell.setupView(with: self.respositories[indexPath.row])
+        let remoteImageLoader: ImageLoader = GithubUserImageLoader(requestHandler: GithubFetcher(headers: nil))
+        let imageLoader: ImageLoader = CachedImageLoader(cacheImage: imageCache, remoteImageLoader: remoteImageLoader)
+        githubRepositoryTableViewCell.setupView(with: self.respositories[indexPath.row], imageLoader: imageLoader)
         return githubRepositoryTableViewCell
     }
 

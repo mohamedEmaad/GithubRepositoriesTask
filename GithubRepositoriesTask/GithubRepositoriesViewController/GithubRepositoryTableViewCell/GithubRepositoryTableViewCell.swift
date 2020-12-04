@@ -14,9 +14,29 @@ final class GithubRepositoryTableViewCell: UITableViewCell {
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var repositoryNameLabel: UILabel!
     @IBOutlet private weak var respositoryDateLabel: UILabel!
+    private var imageLoader: ImageLoader?
 
-    func setupView(with repository: Repository) {
-        self.userAvatarImage.downloaded(from: repository.owner?.avatar_url ?? "")
+    private var postImageURL: String? {
+        didSet {
+            if let url = postImageURL {
+                self.userAvatarImage.image = #imageLiteral(resourceName: "avatar")
+                imageLoader?.loadImage(urlString: url) { image in
+                    if url == self.postImageURL {
+                        DispatchQueue.main.async {
+                            self.userAvatarImage.image = image
+                        }
+                    }
+                }
+            }
+            else {
+                self.userAvatarImage.image = nil
+            }
+        }
+    }
+    
+    func setupView(with repository: Repository, imageLoader: ImageLoader) {
+        self.imageLoader = imageLoader
+        self.postImageURL = repository.owner?.avatar_url
         self.userNameLabel.text = repository.owner?.login
         self.repositoryNameLabel.text = repository.name
     }

@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func setInitialView(_ windowScene: UIWindowScene) {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let requestHandler: RequestHandler = GithubRepositoriesFetcher(headers: nil)
+        let requestHandler: RequestHandler = GithubFetcher(headers: nil)
         let responseDecoder: ResponseDecoder = GithubRepositoriesDecoder()
         let requestFilterer: RequestFilterer = GithubRepositoryRequestFilterer()
         let githubRepositoryRepo: GithubRepositoryRepo = GithubRepositoryRepoImp(requestHandler: requestHandler, responseDecoder: responseDecoder, requestFilterer: requestFilterer)
