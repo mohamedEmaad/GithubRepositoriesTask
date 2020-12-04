@@ -20,7 +20,7 @@ class GithubRepositoryRepoTestCases: XCTestCase {
     }
 
     func testSuccessfullData() {
-        MockedRequestHandler.mockedData.data = self.mockedDataFactory()
+        MockedRequestHandler.mockedData.data = mockedData
         MockedRequestHandler.mockedData.error = nil
         let expectation = XCTestExpectation(description: "success")
         sut.find(url: .testURL, with: nil) { (repos, error) in
@@ -30,14 +30,6 @@ class GithubRepositoryRepoTestCases: XCTestCase {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
-    }
-
-    private func mockedDataFactory() -> Data? {
-        let testBundle = Bundle(for: type(of: self))
-        let filepath = testBundle.path(forResource: "LocalRepositories", ofType: "txt")!
-        let url = URL(fileURLWithPath: filepath)
-        let mockedData = try? Data(contentsOf: url)
-        return mockedData
     }
 
     func testOfflineError() {
