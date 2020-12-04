@@ -32,6 +32,21 @@ class GithubRepositoryRepoTestCases: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
 
+    func testFilteredSuccessfullData() {
+        MockedRequestHandler.mockedData.data = mockedData
+        MockedRequestHandler.mockedData.error = nil
+        let expectation = XCTestExpectation(description: "success")
+        let filteredKeyword: String = "gr"
+        sut.find(url: .testURL, with: ["keyword": filteredKeyword]) { (repos, error) in
+            XCTAssertNotNil(repos)
+            XCTAssertTrue(!(repos?.isEmpty ?? true))
+            repos?.forEach({ XCTAssertTrue($0.name?.contains(filteredKeyword) ?? false) })
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+
     func testOfflineError() {
         MockedRequestHandler.mockedData.data = nil
         MockedRequestHandler.mockedData.error = MainError.offline
