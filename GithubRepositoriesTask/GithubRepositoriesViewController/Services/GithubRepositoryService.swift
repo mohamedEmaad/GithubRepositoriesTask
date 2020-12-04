@@ -10,6 +10,6 @@ import Foundation
 
 protocol GithubRepositoryService {
 
-    func find(criteria: [String: Encodable?], completion: @escaping ([Repository]?, Error) -> Void)
+    func find(criteria: [String : Any?]?, completion: @escaping ([Repository]?, String?) -> Void)
 
 }

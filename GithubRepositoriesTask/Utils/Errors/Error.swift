@@ -13,5 +13,16 @@ enum MainError: Error {
     case invalidUrl
     case offline
     case responseError(message: String)
+
+    func getErrorMessage() -> String {
+        switch self {
+        case .invalidUrl:
+            return "The connection is offline"
+        case .offline:
+            return "Invalid url"
+        case .responseError(let message):
+            return message
+        }
+    }
     
 }

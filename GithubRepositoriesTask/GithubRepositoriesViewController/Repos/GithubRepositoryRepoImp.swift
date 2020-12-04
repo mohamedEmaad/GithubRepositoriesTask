@@ -12,28 +12,30 @@ final class GithubRepositoryRepoImp: GithubRepositoryRepo {
 
     private let requestHandler: RequestHandler
     private let responseDecoder: ResponseDecoder
+    private let requestFilterer: RequestFilterer
 
-    init(requestHandler: RequestHandler, responseDecoder: ResponseDecoder) {
+    init(requestHandler: RequestHandler, responseDecoder: ResponseDecoder, requestFilterer: RequestFilterer) {
         self.requestHandler = requestHandler
         self.responseDecoder = responseDecoder
+        self.requestFilterer = requestFilterer
     }
 
-    func find(body: Data?, completion: @escaping ([Repository]?, Error?) -> Void) {
-        guard let url: URL = URL(string: "https://api.github.com/repositories") else {
-            completion(nil, MainError.invalidUrl)
-            return
-        }
-        requestHandler.execute(url: url, requestType: .get, body: body) { (data, response, error) in
+    func find(url: URL, with criteria: [String: Any?]?, completion: @escaping ([Repository]?, Error?) -> Void) {
+        requestHandler.execute(url: url, requestType: .get, body: nil) { (data, response, error) in
+            var _error: Error? = nil
+            var _repositories: [Repository]? = nil
             if let error = error {
-                completion(nil, error)
+                _error = error
             } else if let data = data {
-                let repositories: [Repository]? = self.responseDecoder.decode(of: [Repository].self, data: data)
-                completion(repositories, nil)
+                let allRepositories: [Repository]? = self.responseDecoder.decode(of: [Repository].self, data: data)
+                _repositories = self.requestFilterer.filter(list: allRepositories, with: criteria)
             } else {
-                completion(nil, MainError.responseError(message: "Something went wrong please try again later"))
+                _error =  MainError.responseError(message: "Something went wrong please try again later")
             }
-
+            DispatchQueue.main.async {
+                completion(_repositories, _error)
+            }
         }
     }
-    
+
 }

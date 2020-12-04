@@ -23,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         let requestHandler: RequestHandler = GithubRepositoriesFetcher(headers: nil)
         let responseDecoder: ResponseDecoder = GithubRepositoriesDecoder()
-        let githubRepositoryRepo: GithubRepositoryRepo = GithubRepositoryRepoImp(requestHandler: requestHandler, responseDecoder: responseDecoder)
+        let requestFilterer: RequestFilterer = GithubRepositoryRequestFilterer()
+        let githubRepositoryRepo: GithubRepositoryRepo = GithubRepositoryRepoImp(requestHandler: requestHandler, responseDecoder: responseDecoder, requestFilterer: requestFilterer)
         let githubRepoService: GithubRepositoryService = GithubRepositoryServiceImp(githubRepositoryRepo: githubRepositoryRepo)
         let githubRepositoriesViewController: GithubRepositoriesViewController = GithubRepositoriesViewController(githubRepoService: githubRepoService)
         let initialViewController: UINavigationController = UINavigationController(rootViewController: githubRepositoriesViewController)
