@@ -31,6 +31,9 @@
 		F95A9CC2257AAC1300578EAF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB64D9257963B100CEAE81 /* Extensions.swift */; };
 		F95A9CC3257AAC1D00578EAF /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB64BB2579186A00CEAE81 /* Owner.swift */; };
 		F95A9CC5257AAECC00578EAF /* LocalRepositories.txt in Resources */ = {isa = PBXBuildFile; fileRef = F95A9CC4257AAECC00578EAF /* LocalRepositories.txt */; };
+		F95A9CC9257ABB4B00578EAF /* GithubRepositoryRepoTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CC8257ABB4B00578EAF /* GithubRepositoryRepoTestCases.swift */; };
+		F95A9CCC257ABCEA00578EAF /* GithubRepositoryRequestFilterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CA4257A1A8700578EAF /* GithubRepositoryRequestFilterer.swift */; };
+		F95A9CCE257ABD7E00578EAF /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CCD257ABD7E00578EAF /* TestExtensions.swift */; };
 		F99F9D582578F23C00E695B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D572578F23C00E695B8 /* AppDelegate.swift */; };
 		F99F9D5A2578F23C00E695B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D592578F23C00E695B8 /* SceneDelegate.swift */; };
 		F99F9D612578F23F00E695B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99F9D602578F23F00E695B8 /* Assets.xcassets */; };
@@ -77,6 +80,8 @@
 		F95A9CB2257A9FBC00578EAF /* MoreThanSixMonthDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreThanSixMonthDateFormatter.swift; sourceTree = "<group>"; };
 		F95A9CB4257AA5E300578EAF /* GithubFetcherTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubFetcherTestCases.swift; sourceTree = "<group>"; };
 		F95A9CC4257AAECC00578EAF /* LocalRepositories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LocalRepositories.txt; sourceTree = "<group>"; };
+		F95A9CC8257ABB4B00578EAF /* GithubRepositoryRepoTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoryRepoTestCases.swift; sourceTree = "<group>"; };
+		F95A9CCD257ABD7E00578EAF /* TestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		F99F9D542578F23C00E695B8 /* GithubRepositoriesTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubRepositoriesTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F99F9D572578F23C00E695B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F99F9D592578F23C00E695B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +196,8 @@
 				F95A9CC4257AAECC00578EAF /* LocalRepositories.txt */,
 				F99F9D702578F23F00E695B8 /* Info.plist */,
 				F95A9CB4257AA5E300578EAF /* GithubFetcherTestCases.swift */,
+				F95A9CC8257ABB4B00578EAF /* GithubRepositoryRepoTestCases.swift */,
+				F95A9CCD257ABD7E00578EAF /* TestExtensions.swift */,
 			);
 			path = GithubRepositoriesTaskTests;
 			sourceTree = "<group>";
@@ -452,8 +459,11 @@
 				F95A9CC3257AAC1D00578EAF /* Owner.swift in Sources */,
 				F95A9CBF257AABFA00578EAF /* ResponseDecoder.swift in Sources */,
 				F95A9CB5257AA5E300578EAF /* GithubFetcherTestCases.swift in Sources */,
+				F95A9CCC257ABCEA00578EAF /* GithubRepositoryRequestFilterer.swift in Sources */,
 				F95A9CBD257AA6BB00578EAF /* GithubRepositoryServiceImp.swift in Sources */,
 				F95A9CBC257AA6B900578EAF /* GithubRepositoryService.swift in Sources */,
+				F95A9CCE257ABD7E00578EAF /* TestExtensions.swift in Sources */,
+				F95A9CC9257ABB4B00578EAF /* GithubRepositoryRepoTestCases.swift in Sources */,
 				F95A9CBE257AABF500578EAF /* Repository.swift in Sources */,
 				F95A9CBA257AA6A200578EAF /* GithubRepositoryRepoImp.swift in Sources */,
 				F95A9CC0257AAC0200578EAF /* RequestFilterer.swift in Sources */,
