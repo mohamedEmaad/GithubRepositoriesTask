@@ -16,8 +16,18 @@ final class GithubRepositoryServiceImp: GithubRepositoryService {
         self.githubRepositoryRepo = githubRepositoryRepo
     }
 
-    func find(criteria: [String : Encodable?], completion: @escaping ([Repository]?, Error) -> Void) {
-        //TODO : handle reqeuest here
+    func find(criteria: [String : Any?]?, completion: @escaping ([Repository]?, String?) -> Void) {
+        guard let url: URL = URL(string: .baseUrl + "repositories") else {
+            completion(nil, "Invalid url")
+            return
+        }
+        githubRepositoryRepo.find(url: url, with: criteria) { (repos, error) in
+            if let error = error {
+                completion(nil, error.getErrorMessage())
+            } else if let repos = repos {
+                completion(repos, nil)
+            }
+        }
     }
 
 }
