@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class GithubRepositoriesFetcher: RequestHandler {
+final class GithubFetcher: RequestHandler {
 
     private var headers: [String: String]?
     private var lastTask: URLSessionDataTask?
