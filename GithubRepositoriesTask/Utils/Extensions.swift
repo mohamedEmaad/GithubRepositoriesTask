@@ -28,3 +28,5 @@ extension Error {
     }
 
 }
+
+let imageCache: NSCache<AnyObject, AnyObject> = NSCache()
