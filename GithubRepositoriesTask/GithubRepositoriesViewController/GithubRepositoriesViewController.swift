@@ -17,6 +17,12 @@ final class GithubRepositoriesViewController: UIViewController {
     private let githubRepoService: GithubRepositoryService
     private var respositories: [Repository] = []
 
+    private var imageLoaderInstance: ImageLoader {
+        let remoteImageLoader: ImageLoader = GithubUserImageLoader(requestHandler: GithubFetcher(headers: nil))
+        let imageLoader: ImageLoader = CachedImageLoader(cacheImage: imageCache, remoteImageLoader: remoteImageLoader)
+        return imageLoader
+    }
+
     init(githubRepoService: GithubRepositoryService) {
         self.githubRepoService = githubRepoService
         super.init(nibName: nil, bundle: nil)
@@ -98,15 +104,13 @@ extension GithubRepositoriesViewController: UITableViewDataSource, UITableViewDe
         guard let githubRepositoryTableViewCell: GithubRepositoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: GithubRepositoryTableViewCell.identifier, for: indexPath) as? GithubRepositoryTableViewCell else {
             return UITableViewCell()
         }
-        let remoteImageLoader: ImageLoader = GithubUserImageLoader(requestHandler: GithubFetcher(headers: nil))
-        let imageLoader: ImageLoader = CachedImageLoader(cacheImage: imageCache, remoteImageLoader: remoteImageLoader)
-        githubRepositoryTableViewCell.setupView(with: self.respositories[indexPath.row], imageLoader: imageLoader)
+        githubRepositoryTableViewCell.setupView(with: self.respositories[indexPath.row], imageLoader: self.imageLoaderInstance)
         return githubRepositoryTableViewCell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repository: Repository = self.respositories[indexPath.row]
-        let singleRepositoryViewController: SingleRepositoryViewController = SingleRepositoryViewController(repository: repository)
+        let singleRepositoryViewController: SingleRepositoryViewController = SingleRepositoryViewController(repository: repository, imageLoader: self.imageLoaderInstance)
         self.navigationController?.pushViewController(singleRepositoryViewController, animated: true)
         tableView.reloadData()
     }

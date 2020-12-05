@@ -170,13 +170,13 @@
 			path = DateFormatter;
 			sourceTree = "<group>";
 		};
-		F95A9CDB257B859400578EAF /* SingleRepoViewController */ = {
+		F95A9CDB257B859400578EAF /* SingleRepositoryViewController */ = {
 			isa = PBXGroup;
 			children = (
 				F95A9CDC257B85D500578EAF /* SingleRepositoryViewController.swift */,
 				F95A9CDD257B85D500578EAF /* SingleRepositoryViewController.xib */,
 			);
-			path = SingleRepoViewController;
+			path = SingleRepositoryViewController;
 			sourceTree = "<group>";
 		};
 		F99F9D4B2578F23C00E695B8 = {
@@ -200,7 +200,7 @@
 		F99F9D562578F23C00E695B8 /* GithubRepositoriesTask */ = {
 			isa = PBXGroup;
 			children = (
-				F95A9CDB257B859400578EAF /* SingleRepoViewController */,
+				F95A9CDB257B859400578EAF /* SingleRepositoryViewController */,
 				F9EB64B02578FA0E00CEAE81 /* Utils */,
 				F99F9D7D2578F3D200E695B8 /* GithubRepositoriesViewController */,
 				F99F9D572578F23C00E695B8 /* AppDelegate.swift */,
