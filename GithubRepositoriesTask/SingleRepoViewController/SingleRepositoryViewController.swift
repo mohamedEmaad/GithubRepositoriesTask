@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SingleRepoViewController: UIViewController {
+class SingleRepositoryViewController: UIViewController {
 
     @IBOutlet private weak var userAvatarImageView: UIImageView!
     @IBOutlet private weak var usernameLabel: UILabel!

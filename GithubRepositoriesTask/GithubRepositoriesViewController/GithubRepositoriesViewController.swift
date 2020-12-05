@@ -106,7 +106,7 @@ extension GithubRepositoriesViewController: UITableViewDataSource, UITableViewDe
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repository: Repository = self.respositories[indexPath.row]
-        let singleRepositoryViewController: SingleRepoViewController = SingleRepoViewController(repository: repository)
+        let singleRepositoryViewController: SingleRepositoryViewController = SingleRepositoryViewController(repository: repository)
         self.navigationController?.pushViewController(singleRepositoryViewController, animated: true)
         tableView.reloadData()
     }
