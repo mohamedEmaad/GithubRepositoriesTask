@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GithubRepositoriesViewController" customModule="GithubRepositoriesTask" customModuleProvider="target">
             <connections>
+                <outlet property="emptyLabel" destination="bsh-ym-mSx" id="lgA-xL-YZh"/>
                 <outlet property="githubRepositoriesTableView" destination="ElD-9A-Aj9" id="dbT-CB-bf9"/>
                 <outlet property="loadingIndicator" destination="98U-AU-whj" id="adB-ld-Yzt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -27,14 +28,23 @@
                     <rect key="frame" x="197" y="443" width="20" height="20"/>
                     <color key="color" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                 </activityIndicatorView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsh-ym-mSx">
+                    <rect key="frame" x="20" y="453" width="374" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="ElD-9A-Aj9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="94o-SY-Yvt"/>
                 <constraint firstItem="98U-AU-whj" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="BSH-Dt-XO8"/>
                 <constraint firstItem="ElD-9A-Aj9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FQr-fs-bV2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bsh-ym-mSx" secondAttribute="trailing" constant="20" id="UwB-rU-7r4"/>
                 <constraint firstItem="98U-AU-whj" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="V4h-aS-Uw5"/>
+                <constraint firstItem="bsh-ym-mSx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="WV7-Fr-fDn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ElD-9A-Aj9" secondAttribute="bottom" id="dC2-hh-lJU"/>
+                <constraint firstItem="bsh-ym-mSx" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="dFR-jQ-Run"/>
                 <constraint firstItem="ElD-9A-Aj9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="zzd-AB-G1g"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
