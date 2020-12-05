@@ -105,7 +105,10 @@ extension GithubRepositoriesViewController: UITableViewDataSource, UITableViewDe
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: Handle the action of tableview item select.
+        let repository: Repository = self.respositories[indexPath.row]
+        let singleRepositoryViewController: SingleRepoViewController = SingleRepoViewController(repository: repository)
+        self.navigationController?.pushViewController(singleRepositoryViewController, animated: true)
+        tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
