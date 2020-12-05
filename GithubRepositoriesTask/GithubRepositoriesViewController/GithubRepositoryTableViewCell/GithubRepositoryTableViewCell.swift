@@ -39,19 +39,7 @@ final class GithubRepositoryTableViewCell: UITableViewCell {
         self.postImageURL = repository.owner?.avatar_url
         self.userNameLabel.text = repository.owner?.login
         self.repositoryNameLabel.text = repository.name
-        self.respositoryDateLabel.text = self.convertDateFormater(date: repository.date ?? "")
-    }
-
-    func convertDateFormater(date: String) -> String {
-        guard let filteredDate = date.toDate else {
-            return date
-        }
-        let diffComponents: DateComponents = Calendar.current.dateComponents([.month], from: filteredDate, to: Date())
-        if diffComponents.month ?? 0 > 6 {
-            return MoreThanSixMonthDateFormatter.formatedData(date: filteredDate)
-        } else {
-            return LessThanSixMonthDateFormatter.formatedData(date: filteredDate)
-        }
+        self.respositoryDateLabel.text = repository.date
     }
     
 }

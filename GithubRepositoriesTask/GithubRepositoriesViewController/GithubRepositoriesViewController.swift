@@ -12,6 +12,7 @@ final class GithubRepositoriesViewController: UIViewController {
 
     @IBOutlet private weak var githubRepositoriesTableView: UITableView!
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var emptyLabel: UILabel!
     private var githubRepositoryTableViewCellHeight: CGFloat = 69
     private let githubRepoService: GithubRepositoryService
     private var respositories: [Repository] = []
@@ -36,6 +37,7 @@ final class GithubRepositoriesViewController: UIViewController {
         self.githubRepositoriesTableView.dataSource = self
         self.githubRepositoriesTableView.delegate = self
         self.githubRepositoriesTableView.register(GithubRepositoryTableViewCell.nib, forCellReuseIdentifier: GithubRepositoryTableViewCell.identifier)
+        self.githubRepositoriesTableView.tableFooterView = UIView()
     }
 
     private func addSearchBarToNavigationControllerBar() {
@@ -57,15 +59,29 @@ final class GithubRepositoriesViewController: UIViewController {
 
     private func getRepositories(with keyword: String? = nil) {
         self.loadingIndicator.show()
-        self.githubRepoService.find(criteria: ["keyword": keyword]) { [weak self] (repos, errorMessage) in
-            if let repos = repos {
-                self?.respositories = repos
+        self.githubRepoService.find(criteria: ["keyword": keyword]) { [weak self] (result) in
+            switch result {
+            case .success(let repos):
+                self?.respositories = repos ?? []
                 self?.showSuccessView()
+            case .error(let errorMessage):
+                self?.respositories = []
+                self?.showErrorView(with: errorMessage)
             }
+            self?.reloadView()
         }
     }
 
     private func showSuccessView() {
+        self.emptyLabel.isHidden = true
+    }
+
+    private func showErrorView(with errorMessage: String) {
+        self.emptyLabel.isHidden = false
+        self.emptyLabel.text = errorMessage
+    }
+
+    private func reloadView() {
         self.loadingIndicator.hide()
         self.githubRepositoriesTableView.reloadData()
     }

@@ -36,6 +36,9 @@
 		F95A9CCE257ABD7E00578EAF /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CCD257ABD7E00578EAF /* TestExtensions.swift */; };
 		F95A9CD0257ABFCB00578EAF /* ResponseDecoderTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CCF257ABFCB00578EAF /* ResponseDecoderTestCases.swift */; };
 		F95A9CD2257AC6B900578EAF /* GithubRepositoryServiceTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CD1257AC6B900578EAF /* GithubRepositoryServiceTestCases.swift */; };
+		F95A9CD5257AC92900578EAF /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CA7257A56EC00578EAF /* ImageLoader.swift */; };
+		F95A9CD6257AC92F00578EAF /* GithubUserImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CA9257A577500578EAF /* GithubUserImageLoader.swift */; };
+		F95A9CDA257B7FBD00578EAF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CD9257B7FBD00578EAF /* Result.swift */; };
 		F99F9D582578F23C00E695B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D572578F23C00E695B8 /* AppDelegate.swift */; };
 		F99F9D5A2578F23C00E695B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D592578F23C00E695B8 /* SceneDelegate.swift */; };
 		F99F9D612578F23F00E695B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99F9D602578F23F00E695B8 /* Assets.xcassets */; };
@@ -86,6 +89,7 @@
 		F95A9CCD257ABD7E00578EAF /* TestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		F95A9CCF257ABFCB00578EAF /* ResponseDecoderTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDecoderTestCases.swift; sourceTree = "<group>"; };
 		F95A9CD1257AC6B900578EAF /* GithubRepositoryServiceTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoryServiceTestCases.swift; sourceTree = "<group>"; };
+		F95A9CD9257B7FBD00578EAF /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F99F9D542578F23C00E695B8 /* GithubRepositoriesTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubRepositoriesTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F99F9D572578F23C00E695B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F99F9D592578F23C00E695B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 			children = (
 				F9EB64BB2579186A00CEAE81 /* Owner.swift */,
 				F9EB64BC2579186A00CEAE81 /* Repository.swift */,
+				F95A9CD9257B7FBD00578EAF /* Result.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -445,6 +450,7 @@
 				F95A9CAF257A9ED600578EAF /* GithubRepoDateFormatter.swift in Sources */,
 				F9EB64B32578FA2400CEAE81 /* UIExtensions.swift in Sources */,
 				F9EB64CA2579245700CEAE81 /* RequestType.swift in Sources */,
+				F95A9CDA257B7FBD00578EAF /* Result.swift in Sources */,
 				F9EB64D325792FF500CEAE81 /* ResponseDecoder.swift in Sources */,
 				F95A9CA5257A1A8700578EAF /* GithubRepositoryRequestFilterer.swift in Sources */,
 				F95A9CA8257A56EC00578EAF /* ImageLoader.swift in Sources */,
@@ -475,7 +481,9 @@
 				F95A9CBA257AA6A200578EAF /* GithubRepositoryRepoImp.swift in Sources */,
 				F95A9CD2257AC6B900578EAF /* GithubRepositoryServiceTestCases.swift in Sources */,
 				F95A9CC0257AAC0200578EAF /* RequestFilterer.swift in Sources */,
+				F95A9CD6257AC92F00578EAF /* GithubUserImageLoader.swift in Sources */,
 				F95A9CB6257AA62300578EAF /* RequestHandler.swift in Sources */,
+				F95A9CD5257AC92900578EAF /* ImageLoader.swift in Sources */,
 				F95A9CC2257AAC1300578EAF /* Extensions.swift in Sources */,
 				F95A9CB7257AA62700578EAF /* RequestType.swift in Sources */,
 				F95A9CBB257AA6B200578EAF /* GithubRepositoryRepo.swift in Sources */,
