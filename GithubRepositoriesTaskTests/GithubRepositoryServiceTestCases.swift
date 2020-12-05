@@ -24,10 +24,13 @@ class GithubRepositoryServiceTestCases: XCTestCase {
         MockedRequestHandler.mockedData.data = mockedData
         MockedRequestHandler.mockedData.error = nil
         let expectation = XCTestExpectation(description: "success")
-        sut.find(criteria: nil) { (repos, errorMessage) in
-            XCTAssertNotNil(repos)
-            XCTAssertTrue(!(repos?.isEmpty ?? true))
-            XCTAssertNil(errorMessage)
+        sut.find(criteria: nil) { (result) in
+            guard case let Result.success(repositories) = result else {
+                XCTAssertThrowsError("Unexpected type")
+                return
+            }
+            XCTAssertNotNil(repositories)
+            XCTAssertTrue(!(repositories?.isEmpty ?? true))
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -38,8 +41,11 @@ class GithubRepositoryServiceTestCases: XCTestCase {
         MockedRequestHandler.mockedData.data = nil
         MockedRequestHandler.mockedData.error = MainError.responseError(message: customErrorMessage)
         let expectation = XCTestExpectation(description: "success")
-        sut.find(criteria: nil) { (repos, errorMessage) in
-            XCTAssertNil(repos)
+        sut.find(criteria: nil) { (result) in
+            guard case let Result.error(errorMessage) = result else {
+                XCTAssertThrowsError("Unexpected type")
+                return
+            }
             XCTAssertNotNil(errorMessage)
             XCTAssertEqual(errorMessage, customErrorMessage)
             expectation.fulfill()

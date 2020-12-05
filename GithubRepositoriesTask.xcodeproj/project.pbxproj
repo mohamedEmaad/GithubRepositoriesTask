@@ -41,12 +41,16 @@
 		F95A9CDA257B7FBD00578EAF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CD9257B7FBD00578EAF /* Result.swift */; };
 		F95A9CDE257B85D500578EAF /* SingleRepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CDC257B85D500578EAF /* SingleRepositoryViewController.swift */; };
 		F95A9CDF257B85D500578EAF /* SingleRepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95A9CDD257B85D500578EAF /* SingleRepositoryViewController.xib */; };
+		F95A9CE0257B903D00578EAF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CD9257B7FBD00578EAF /* Result.swift */; };
 		F99F9D582578F23C00E695B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D572578F23C00E695B8 /* AppDelegate.swift */; };
 		F99F9D5A2578F23C00E695B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D592578F23C00E695B8 /* SceneDelegate.swift */; };
 		F99F9D612578F23F00E695B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99F9D602578F23F00E695B8 /* Assets.xcassets */; };
 		F99F9D642578F23F00E695B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F99F9D622578F23F00E695B8 /* LaunchScreen.storyboard */; };
 		F99F9D7B2578F32C00E695B8 /* GithubRepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F9D792578F32C00E695B8 /* GithubRepositoriesViewController.swift */; };
 		F99F9D7C2578F32C00E695B8 /* GithubRepositoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99F9D7A2578F32C00E695B8 /* GithubRepositoriesViewController.xib */; };
+		F9D27E4A257B945F009C29AD /* MoreThanSixMonthDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CB2257A9FBC00578EAF /* MoreThanSixMonthDateFormatter.swift */; };
+		F9D27E4B257B9463009C29AD /* LessThanSixMonthDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CB0257A9F8300578EAF /* LessThanSixMonthDateFormatter.swift */; };
+		F9D27E4C257B946A009C29AD /* GithubRepoDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A9CAE257A9ED600578EAF /* GithubRepoDateFormatter.swift */; };
 		F9EB64AE2578F75000CEAE81 /* GithubRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB64AC2578F75000CEAE81 /* GithubRepositoryTableViewCell.swift */; };
 		F9EB64AF2578F75000CEAE81 /* GithubRepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9EB64AD2578F75000CEAE81 /* GithubRepositoryTableViewCell.xib */; };
 		F9EB64B32578FA2400CEAE81 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB64B22578FA2400CEAE81 /* UIExtensions.swift */; };
@@ -488,16 +492,20 @@
 				F95A9CC3257AAC1D00578EAF /* Owner.swift in Sources */,
 				F95A9CBF257AABFA00578EAF /* ResponseDecoder.swift in Sources */,
 				F95A9CB5257AA5E300578EAF /* GithubFetcherTestCases.swift in Sources */,
+				F9D27E4B257B9463009C29AD /* LessThanSixMonthDateFormatter.swift in Sources */,
 				F95A9CCC257ABCEA00578EAF /* GithubRepositoryRequestFilterer.swift in Sources */,
 				F95A9CBD257AA6BB00578EAF /* GithubRepositoryServiceImp.swift in Sources */,
 				F95A9CBC257AA6B900578EAF /* GithubRepositoryService.swift in Sources */,
+				F9D27E4C257B946A009C29AD /* GithubRepoDateFormatter.swift in Sources */,
 				F95A9CCE257ABD7E00578EAF /* TestExtensions.swift in Sources */,
 				F95A9CC9257ABB4B00578EAF /* GithubRepositoryRepoTestCases.swift in Sources */,
 				F95A9CBE257AABF500578EAF /* Repository.swift in Sources */,
 				F95A9CBA257AA6A200578EAF /* GithubRepositoryRepoImp.swift in Sources */,
 				F95A9CD2257AC6B900578EAF /* GithubRepositoryServiceTestCases.swift in Sources */,
+				F95A9CE0257B903D00578EAF /* Result.swift in Sources */,
 				F95A9CC0257AAC0200578EAF /* RequestFilterer.swift in Sources */,
 				F95A9CD6257AC92F00578EAF /* GithubUserImageLoader.swift in Sources */,
+				F9D27E4A257B945F009C29AD /* MoreThanSixMonthDateFormatter.swift in Sources */,
 				F95A9CB6257AA62300578EAF /* RequestHandler.swift in Sources */,
 				F95A9CD5257AC92900578EAF /* ImageLoader.swift in Sources */,
 				F95A9CC2257AAC1300578EAF /* Extensions.swift in Sources */,
