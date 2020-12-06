@@ -8,8 +8,10 @@
 First I created an interface `RequestHandler` to retrieve the data from the api with `Data`.
  
 Then I create a concrete implementation for this `RequestHandler` called `GithubFetcher`.
+
+Now we need this `Data` response to be usable, So I created `ResponseDecoder` to decode this `Data` into entity class `Repository`.
  
-Now we need this `Data` response to be usable, so I created an interface `GithubRepositoryReposioryInterface` which is responsible for decoding this data using `ResponseDecoder` and also filtering these data to match user criteria.
+After that I created an interface `GithubRepositoryReposioryInterface` which is responsible for filtering these data to match user criteria.
  
 Please note that the API doesn't return a date so I made a tweak by generating a random date for every item in  the response to be able to format it then.
  
