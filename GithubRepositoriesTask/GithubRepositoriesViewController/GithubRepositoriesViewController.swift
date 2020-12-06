@@ -13,18 +13,14 @@ final class GithubRepositoriesViewController: UIViewController {
     @IBOutlet private weak var githubRepositoriesTableView: UITableView!
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var emptyLabel: UILabel!
-    private var githubRepositoryTableViewCellHeight: CGFloat = 69
-    private let githubRepoService: GithubRepositoryService
+
+    private let githubRepositoryTableViewCellHeight: CGFloat = 69
+    private let searchBarAlpha: CGFloat = 0.4
+    private let githubRepositoryService: GithubRepositoryServiceInterface
     private var respositories: [Repository] = []
 
-    private var imageLoaderInstance: ImageLoader {
-        let remoteImageLoader: ImageLoader = GithubUserImageLoader(requestHandler: GithubFetcher(headers: nil))
-        let imageLoader: ImageLoader = CachedImageLoader(cacheImage: imageCache, remoteImageLoader: remoteImageLoader)
-        return imageLoader
-    }
-
-    init(githubRepoService: GithubRepositoryService) {
-        self.githubRepoService = githubRepoService
+    init(githubRepositoryService: GithubRepositoryServiceInterface) {
+        self.githubRepositoryService = githubRepositoryService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -35,47 +31,62 @@ final class GithubRepositoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()
-        self.addSearchBarToNavigationControllerBar()
+        self.addSearchBar()
         self.getRepositories()
     }
 
     private func setupTableView() {
         self.githubRepositoriesTableView.dataSource = self
         self.githubRepositoriesTableView.delegate = self
-        self.githubRepositoriesTableView.register(GithubRepositoryTableViewCell.nib, forCellReuseIdentifier: GithubRepositoryTableViewCell.identifier)
+        self.githubRepositoriesTableView.register(
+            GithubRepositoryTableViewCell.nib,
+            forCellReuseIdentifier: GithubRepositoryTableViewCell.identifier
+        )
         self.githubRepositoriesTableView.tableFooterView = UIView()
     }
 
-    private func addSearchBarToNavigationControllerBar() {
-        let searchBar: UISearchBar = self.searchBar()
-        self.navigationItem.titleView = searchBar
+    private func addSearchBar() {
+        self.navigationItem.titleView = self.searchBar()
     }
 
     private func searchBar() -> UISearchBar {
         let searchBar:UISearchBar = UISearchBar()
-        searchBar.placeholder = "Enter your search"
+        searchBar.placeholder = "SearchBar:placeHolder".localized
         searchBar.autocapitalizationType = .none
-        searchBar.searchTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
+        searchBar.searchTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(searchBarAlpha)
         searchBar.searchTextField.textColor = UIColor.gray
         searchBar.searchTextField.clearButtonMode = .whileEditing
         searchBar.showsCancelButton = true
         searchBar.delegate = self
+        
         return searchBar
     }
 
     private func getRepositories(with keyword: String? = nil) {
         self.loadingIndicator.show()
-        self.githubRepoService.find(criteria: ["keyword": keyword]) { [weak self] (result) in
-            switch result {
-            case .success(let repos):
-                self?.respositories = repos ?? []
-                self?.showSuccessView()
-            case .error(let errorMessage):
-                self?.respositories = []
-                self?.showErrorView(with: errorMessage)
-            }
-            self?.reloadView()
+
+        self.githubRepositoryService.find(criteria: ["keyword": keyword]) {
+            [weak self] (result) in
+
+            self?.resolveFindResult(result)
         }
+    }
+
+    private func resolveFindResult(_ result: Result<[Repository]?>) {
+        if case let Result.error(errorMessage) = result {
+            self.respositories = []
+            self.showErrorView(with: errorMessage)
+            self.reloadView()
+
+            return
+        }
+
+        guard case let Result.success(repos) = result else {
+            return
+        }
+        self.respositories = repos ?? []
+        self.showSuccessView()
+        self.reloadView()
     }
 
     private func showSuccessView() {
@@ -101,18 +112,40 @@ extension GithubRepositoriesViewController: UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let githubRepositoryTableViewCell: GithubRepositoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: GithubRepositoryTableViewCell.identifier, for: indexPath) as? GithubRepositoryTableViewCell else {
+        guard let githubRepositoryTableViewCell: GithubRepositoryTableViewCell = tableView.dequeueReusableCell(
+            withIdentifier: GithubRepositoryTableViewCell.identifier,
+            for: indexPath
+        ) as? GithubRepositoryTableViewCell else {
             return UITableViewCell()
         }
-        githubRepositoryTableViewCell.setupView(with: self.respositories[indexPath.row], imageLoader: self.imageLoaderInstance)
+
+        githubRepositoryTableViewCell.setupView(
+            with: self.getRepositoryByIndex(indexPath.row),
+            imageLoader: self.getImageLoader(requestHandler: GithubFetcher(headers: nil))
+        )
+
         return githubRepositoryTableViewCell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repository: Repository = self.respositories[indexPath.row]
-        let singleRepositoryViewController: SingleRepositoryViewController = SingleRepositoryViewController(repository: repository, imageLoader: self.imageLoaderInstance)
+        let singleRepositoryViewController: SingleRepositoryViewController = SingleRepositoryViewController(
+            repository: self.getRepositoryByIndex(indexPath.row),
+            imageLoader: self.getImageLoader(requestHandler: GithubFetcher(headers: nil))
+        )
+
         self.navigationController?.pushViewController(singleRepositoryViewController, animated: true)
+
         tableView.reloadData()
+    }
+
+    private func getRepositoryByIndex(_ index: Int) -> Repository {
+        return self.respositories[index]
+    }
+
+    private func getImageLoader(requestHandler: RequestHandler) -> ImageLoader {
+        let remoteImageLoader: ImageLoader = GithubUserImageLoader(requestHandler: GithubFetcher(headers: nil))
+
+        return CachedImageLoader(cacheImage: imageCache, remoteImageLoader: remoteImageLoader)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -124,14 +157,17 @@ extension GithubRepositoriesViewController: UITableViewDataSource, UITableViewDe
 extension GithubRepositoriesViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if (searchBar.text?.count ?? 0) > 1 {
-            self.getRepositories(with: searchBar.text)
+        if (searchBar.text?.count ?? 0) < 1 {
+            return
         }
+
+        self.getRepositories(with: searchBar.text)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        
         self.getRepositories()
     }
 

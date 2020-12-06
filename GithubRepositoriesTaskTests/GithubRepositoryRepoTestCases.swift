@@ -10,13 +10,12 @@ import XCTest
 
 class GithubRepositoryRepoTestCases: XCTestCase {
 
-    private var sut: GithubRepositoryRepo!
+    private var sut: GithubRepositoryRepository!
 
     override func setUp() {
         let requestHandler: RequestHandler = MockedRequestHandler()
         let responseDecoder: ResponseDecoder = GithubRepositoriesDecoder()
-        let requestFilterer: RequestFilterer = GithubRepositoryRequestFilterer()
-        sut = GithubRepositoryRepoImp(requestHandler: requestHandler, responseDecoder: responseDecoder, requestFilterer: requestFilterer)
+        sut = GithubRepositoryRepository(requestHandler: requestHandler, responseDecoder: responseDecoder)
     }
 
     func testSuccessfullData() {

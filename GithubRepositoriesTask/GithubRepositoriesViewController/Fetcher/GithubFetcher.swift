@@ -21,7 +21,11 @@ final class GithubFetcher: RequestHandler {
         self.lastTask?.cancel()
         var request = URLRequest(url: url)
         request.httpMethod = requestType.rawValue
-        (self.headers ?? [:]).forEach { request.addValue($0.value, forHTTPHeaderField: $0.key) }
+
+        (self.headers ?? [:]).forEach {
+            request.addValue($0.value, forHTTPHeaderField: $0.key)
+        }
+
         self.lastTask = URLSession.shared.dataTask(with: request, completionHandler: completion)
         lastTask?.resume()
     }

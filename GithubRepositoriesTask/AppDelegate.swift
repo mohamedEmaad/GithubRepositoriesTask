@@ -16,16 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
-        let requestHandler: RequestHandler = GithubFetcher(headers: nil)
-        let responseDecoder: ResponseDecoder = GithubRepositoriesDecoder()
-        let requestFilterer: RequestFilterer = GithubRepositoryRequestFilterer()
-        let githubRepositoryRepo: GithubRepositoryRepo = GithubRepositoryRepoImp(requestHandler: requestHandler, responseDecoder: responseDecoder, requestFilterer: requestFilterer)
-        let githubRepoService: GithubRepositoryService = GithubRepositoryServiceImp(githubRepositoryRepo: githubRepositoryRepo)
-        let githubRepositoriesViewController: GithubRepositoriesViewController = GithubRepositoriesViewController(githubRepoService: githubRepoService)
+        let githubRepoService: GithubRepositoryServiceInterface = self.getRepositoryService(headers: nil)
+        let githubRepositoriesViewController: GithubRepositoriesViewController = GithubRepositoriesViewController(githubRepositoryService: githubRepoService)
         let initialViewController: UINavigationController = UINavigationController(rootViewController: githubRepositoriesViewController)
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
+
         return true
+    }
+
+    private func getRepositoryService(headers: [String: String]?) -> GithubRepositoryServiceInterface {
+        let requestHandler: RequestHandler = GithubFetcher(headers: headers)
+       let responseDecoder: ResponseDecoder = GithubRepositoriesDecoder()
+       let githubRepositoryRepo: GithubRepositoryReposioryInterface = GithubRepositoryRepository(requestHandler: requestHandler, responseDecoder: responseDecoder)
+
+        return GithubRepositoryService(githubRepositoryRepo: githubRepositoryRepo)
     }
 
     // MARK: UISceneSession Lifecycle

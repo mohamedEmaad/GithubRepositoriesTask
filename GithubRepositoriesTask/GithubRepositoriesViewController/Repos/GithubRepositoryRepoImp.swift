@@ -8,50 +8,80 @@
 
 import Foundation
 
-final class GithubRepositoryRepoImp: GithubRepositoryRepo {
+final class GithubRepositoryRepositoryImp: GithubRepositoryReposiory {
 
     private let requestHandler: RequestHandler
     private let responseDecoder: ResponseDecoder
-    private let requestFilterer: RequestFilterer
 
-    init(requestHandler: RequestHandler, responseDecoder: ResponseDecoder, requestFilterer: RequestFilterer) {
+    init(requestHandler: RequestHandler, responseDecoder: ResponseDecoder) {
         self.requestHandler = requestHandler
         self.responseDecoder = responseDecoder
-        self.requestFilterer = requestFilterer
     }
 
     func find(url: URL, with criteria: [String: Any?]?, completion: @escaping (Result<[Repository]?>) -> Void) {
-        requestHandler.execute(url: url, requestType: .get, body: nil) { (data, response, error) in
-            var result: Result<[Repository]?>
+        requestHandler.execute(url: url, requestType: .get, body: nil) { (data, _, error) in
+
             if let error = error {
-                result = .error(errorMessage: error.getErrorMessage())
-            } else if let data = data {
-                let allRepositories: [Repository]? = self.responseDecoder.decode(of: [Repository].self, data: data)
-                let _repositories: [Repository]? = self.requestFilterer.filter(list: allRepositories, with: criteria)
-                _repositories?.forEach({
-                    let formattedData: String = self.convertDateFormater(date: Date.randomDate(daysBack: 2000)?.toString() ?? "")
-                    $0.date = formattedData
-                })
-                result = (_repositories?.isEmpty ?? true) ? .error(errorMessage: "Sorry, No result for your search") : .success(_repositories)
-            } else {
-                result = .error(errorMessage: "Something went wrong please try again later")
+                DispatchQueue.main.async {
+                    completion(.error(errorMessage: error.getErrorMessage()))
+                }
+
+                return
             }
+
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(.error(errorMessage: "Something went wrong please try again later"))
+                }
+
+                return
+            }
+
+            var repositories: [Repository]? = self.responseDecoder.decode(of: [Repository].self, data: data)
+            if let keyword = criteria?["keyword"] as? String {
+                repositories = self.filterByKeyword(repositories: repositories, keyword: keyword)
+            }
+
+            repositories = self.appendDate(repositories: repositories)
+
             DispatchQueue.main.async {
-                completion(result)
+                completion((repositories?.isEmpty ?? true) ? .error(errorMessage: "Sorry, No result for your search") : .success(repositories))
             }
+
         }
+    }
+
+    private func filterByKeyword(repositories: [Repository]?, keyword: String) -> [Repository]? {
+        return repositories?.filter({ $0.name?.contains(keyword) ?? false })
+    }
+
+    private func appendDate(repositories: [Repository]?) -> [Repository]? {
+        repositories?.forEach({
+            let formattedData: String = self.convertDateFormater(
+                date: Date.randomDate(daysBack: 2000)?.toString() ?? ""
+            )
+                $0.date = formattedData
+        })
+
+        return repositories
     }
 
     private func convertDateFormater(date: String) -> String {
         guard let filteredDate = date.toDate else {
             return date
         }
-        let diffComponents: DateComponents = Calendar.current.dateComponents([.month], from: filteredDate, to: Date())
+
+        let diffComponents: DateComponents = Calendar.current.dateComponents(
+            [.month],
+            from: filteredDate,
+            to: Date()
+        )
+
         if diffComponents.month ?? 0 > 6 {
             return MoreThanSixMonthDateFormatter.formatedData(date: filteredDate)
-        } else {
-            return LessThanSixMonthDateFormatter.formatedData(date: filteredDate)
         }
+
+        return LessThanSixMonthDateFormatter.formatedData(date: filteredDate)
     }
 
 }

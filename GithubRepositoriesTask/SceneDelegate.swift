@@ -21,15 +21,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func setInitialView(_ windowScene: UIWindowScene) {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let requestHandler: RequestHandler = GithubFetcher(headers: nil)
-        let responseDecoder: ResponseDecoder = GithubRepositoriesDecoder()
-        let requestFilterer: RequestFilterer = GithubRepositoryRequestFilterer()
-        let githubRepositoryRepo: GithubRepositoryRepo = GithubRepositoryRepoImp(requestHandler: requestHandler, responseDecoder: responseDecoder, requestFilterer: requestFilterer)
-        let githubRepoService: GithubRepositoryService = GithubRepositoryServiceImp(githubRepositoryRepo: githubRepositoryRepo)
-        let githubRepositoriesViewController: GithubRepositoriesViewController = GithubRepositoriesViewController(githubRepoService: githubRepoService)
+        let githubRepoService: GithubRepositoryServiceInterface = self.getRepositoryService(headers: nil)
+        let githubRepositoriesViewController: GithubRepositoriesViewController = GithubRepositoriesViewController(githubRepositoryService: githubRepoService)
         let initialViewController: UINavigationController = UINavigationController(rootViewController: githubRepositoriesViewController)
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
+    }
+
+    private func getRepositoryService(headers: [String: String]?) -> GithubRepositoryServiceInterface {
+        let requestHandler: RequestHandler = GithubFetcher(headers: headers)
+       let responseDecoder: ResponseDecoder = GithubRepositoriesDecoder()
+       let githubRepositoryRepo: GithubRepositoryReposioryInterface = GithubRepositoryRepository(requestHandler: requestHandler, responseDecoder: responseDecoder)
+
+        return GithubRepositoryService(githubRepositoryRepo: githubRepositoryRepo)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

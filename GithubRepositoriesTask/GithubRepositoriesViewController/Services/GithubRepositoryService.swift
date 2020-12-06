@@ -1,5 +1,5 @@
 //
-//  GithubRepoService.swift
+//  GithubRepoServiceImp.swift
 //  GithubRepositoriesTask
 //
 //  Created by Mohamed Emad on 12/3/20.
@@ -8,8 +8,23 @@
 
 import Foundation
 
-protocol GithubRepositoryService {
+final class GithubRepositoryService: GithubRepositoryServiceInterface {
 
-    func find(criteria: [String : Any?]?, completion: @escaping (Result<[Repository]?>) -> Void)
+    private let githubRepositoryRepo: GithubRepositoryReposioryInterface
+    private let repositoriesUrl: String = "repositories"
+
+    init(githubRepositoryRepo: GithubRepositoryReposioryInterface) {
+        self.githubRepositoryRepo = githubRepositoryRepo
+    }
+
+    func find(criteria: [String : Any?]?, completion: @escaping (Result<[Repository]?>) -> Void) {
+        guard let url: URL = URL(string: .baseUrl + repositoriesUrl) else {
+            completion(.error(errorMessage: "CallApi:InvalidUrl".localized))
+            
+            return
+        }
+
+        githubRepositoryRepo.find(url: url, with: criteria, completion: completion)
+    }
 
 }
