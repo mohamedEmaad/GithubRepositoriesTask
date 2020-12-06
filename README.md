@@ -2,7 +2,7 @@
 
 
 ## Requirements.
- - Check the [https://mail.google.com/mail/u/0/#inbox/FMfcgxwKjfBxsXWrNPHtjnCtlvTBgPTr?projector=1&messagePartId=0.1
+ - Check the https://docs.google.com/document/d/1ccstZyPBeUnPfbjSPvf3LPYsKhFj9isISoayvBi4LqQ/edit?usp=sharing
  
 ## How it works
 First I created an interface `RequestHandler` to retrieve the data from the api with `Data`.
