@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol GithubRepositoryRepo {
+protocol GithubRepositoryReposioryInterface {
 
     func find(url: URL, with criteria: [String: Any?]?, completion: @escaping (Result<[Repository]?>) -> Void)
 

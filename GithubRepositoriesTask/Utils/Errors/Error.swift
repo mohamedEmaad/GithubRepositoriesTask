@@ -16,10 +16,10 @@ enum MainError: Error {
 
     func getErrorMessage() -> String {
         switch self {
-        case .invalidUrl:
-            return "The connection is offline"
         case .offline:
-            return "Invalid url"
+            return "ConnectionOffline:Error".localized
+        case .invalidUrl:
+            return "CallApi:InvalidUrl".localized
         case .responseError(let message):
             return message
         }

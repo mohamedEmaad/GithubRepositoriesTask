@@ -15,9 +15,8 @@ class GithubRepositoryServiceTestCases: XCTestCase {
     override func setUp() {
         let requestHandler: RequestHandler = MockedRequestHandler()
         let responseDecoder: ResponseDecoder = GithubRepositoriesDecoder()
-        let requestFilterer: RequestFilterer = GithubRepositoryRequestFilterer()
-        let githubRepositoryRepo: GithubRepositoryRepo = GithubRepositoryRepoImp(requestHandler: requestHandler, responseDecoder: responseDecoder, requestFilterer: requestFilterer)
-        self.sut = GithubRepositoryServiceImp(githubRepositoryRepo: githubRepositoryRepo)
+        let githubRepositoryRepo: GithubRepositoryRepository = GithubRepositoryRepository(requestHandler: requestHandler, responseDecoder: responseDecoder)
+        self.sut = GithubRepositoryService(githubRepositoryRepo: githubRepositoryRepo)
     }
 
     func testSuccessReturnedData() {

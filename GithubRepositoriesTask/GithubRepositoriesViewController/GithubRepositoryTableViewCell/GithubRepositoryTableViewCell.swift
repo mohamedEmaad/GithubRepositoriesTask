@@ -18,18 +18,21 @@ final class GithubRepositoryTableViewCell: UITableViewCell {
 
     private var postImageURL: String? {
         didSet {
-            if let url = postImageURL {
-                self.userAvatarImage.image = #imageLiteral(resourceName: "avatar")
-                imageLoader?.loadImage(urlString: url) { image in
-                    if url == self.postImageURL {
-                        DispatchQueue.main.async {
-                            self.userAvatarImage.image = image
-                        }
-                    }
-                }
-            }
-            else {
+
+            if postImageURL == nil {
                 self.userAvatarImage.image = nil
+                return
+            }
+            self.userAvatarImage.image = #imageLiteral(resourceName: "avatar")
+            let url: String = postImageURL!
+            imageLoader?.loadImage(urlString: url) { image in
+                if url != self.postImageURL {
+
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.userAvatarImage.image = image
+                }
             }
         }
     }

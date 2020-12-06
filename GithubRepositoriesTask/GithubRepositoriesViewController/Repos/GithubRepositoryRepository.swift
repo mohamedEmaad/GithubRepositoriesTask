@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class GithubRepositoryRepositoryImp: GithubRepositoryReposiory {
+final class GithubRepositoryRepository: GithubRepositoryReposioryInterface {
 
     private let requestHandler: RequestHandler
     private let responseDecoder: ResponseDecoder
@@ -31,7 +31,7 @@ final class GithubRepositoryRepositoryImp: GithubRepositoryReposiory {
 
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(.error(errorMessage: "Something went wrong please try again later"))
+                    completion(.error(errorMessage: "ReturnedData:Nil".localized))
                 }
 
                 return
@@ -45,7 +45,7 @@ final class GithubRepositoryRepositoryImp: GithubRepositoryReposiory {
             repositories = self.appendDate(repositories: repositories)
 
             DispatchQueue.main.async {
-                completion((repositories?.isEmpty ?? true) ? .error(errorMessage: "Sorry, No result for your search") : .success(repositories))
+                completion((repositories?.isEmpty ?? true) ? .error(errorMessage: "FilterRepositories:ErrorMessage".localized) : .success(repositories))
             }
 
         }

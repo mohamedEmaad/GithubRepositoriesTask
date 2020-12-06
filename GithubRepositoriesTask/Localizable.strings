@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  GithubRepositoriesTask
+
+  Created by Mohamed Emad on 12/5/20.
+  Copyright © 2020 Mohamed Emad. All rights reserved.
+*/
+
+"SearchBar:placeHolder" = "Enter your search";
+"CallApi:InvalidUrl" = "Invalid url";
+"FilterRepositories:ErrorMessage" = "Sorry, No result for your search";
+"ReturnedData:Nil" = "Something went wrong please try again later";
+"ConnectionOffline:Error" = "The connection is offline";
